@@ -22,14 +22,18 @@ const Login = () => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const res = await login({ username, password }) // TODO: handle error state
+        try {
+            const res = await login({ username, password })
 
-        setName('')
-        setPassword('')
-        setToken(res.access_token)
+            setName('')
+            setPassword('')
+            setToken(res.access_token)
 
-        if (res.access_token) {
-            navigate("../sensors")
+            if (res.access_token) {
+                navigate("../sensors")
+            }
+        } catch (error) {
+            console.error(error)
         }
     }
 

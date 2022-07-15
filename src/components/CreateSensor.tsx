@@ -6,7 +6,7 @@ import { Sensor } from '../pages/Sensors'
 
 import './createSensor.css'
 
-const CreateSensor = ({ addSensor }: { addSensor: (sensor: Sensor) => void }) => { // TODO: any
+const CreateSensor = ({ addSensor }: { addSensor: (sensor: Sensor) => void }) => {
     const { token } = useContext(AuthContext)
     const [isOpen, setIsOpen] = useState(false)
     const [description, setDescription] = useState('')
@@ -36,6 +36,10 @@ const CreateSensor = ({ addSensor }: { addSensor: (sensor: Sensor) => void }) =>
             const sensor = { id: Math.floor(Math.random() * 1000), description, samplingPeriod, isActive }
             createSensor(sensor, token)
             addSensor(sensor)
+            setIsOpen(false)
+            setDescription('')
+            setSamplingPeriod(5)
+            setIsActive(false)
         } catch (error) {
             console.error(error)
         }

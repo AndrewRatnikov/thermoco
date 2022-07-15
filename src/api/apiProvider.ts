@@ -12,7 +12,7 @@ const apiProvider = {
         return response;
     },
 
-    post: async (url: string, data: any, token?: string) => { // TODO: del any
+    post: async (url: string, data: string, token?: string) => {
         const rawResponse = await fetch(url, {
             method: 'POST',
             headers: {
@@ -30,7 +30,7 @@ const apiProvider = {
         return response;
     },
 
-    delete: async (url: string, token: string) => { // TODO: del any
+    delete: async (url: string, token: string) => {
         const rawResponse = await fetch(url, {
             method: 'DELETE',
             headers: {
