@@ -10,6 +10,7 @@ import Login from './pages/Login';
 import Sensors from './pages/Sensors';
 
 import './App.css';
+import RequireAuth from './components/RequireAuth';
 
 function App() {
   return (
@@ -18,7 +19,11 @@ function App() {
         <Routes>
           <Route path='/' element={<Navigate to='login' replace />} />
           <Route path='login' element={<Login />} />
-          <Route path='sensors' element={<Sensors />} />
+          <Route path='sensors' element={
+            <RequireAuth>
+              <Sensors />
+            </RequireAuth>
+          } />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

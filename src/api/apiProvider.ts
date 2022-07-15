@@ -1,13 +1,13 @@
 const apiProvider = {
     get: async (url: string, token?: string) => {
-        const rawResponse = fetch(url, {
+        const rawResponse = await fetch(url, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
                 ...(token ? { 'Authorization': `Bearer ${token}` } : {})
             }
         })
-        const response = (await rawResponse).json();
+        const response = rawResponse.json();
 
         return response;
     },
@@ -25,7 +25,7 @@ const apiProvider = {
             },
             body: data
         })
-        const response = (await rawResponse).json();
+        const response = rawResponse.json();
 
         return response;
     }
