@@ -22,7 +22,7 @@ const Login = () => {
     const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        const res = await login({ username, password })
+        const res = await login({ username, password }) // TODO: handle error state
 
         setName('')
         setPassword('')

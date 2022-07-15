@@ -17,8 +17,6 @@
     padding-bottom: 10px;
 }
 
-.sensors-table caption {
-    font-size: 1.5em;
-    font-weight: bold;
-    margin-bottom: 20px;
+.sensors-title {
+    text-align: center;
 }

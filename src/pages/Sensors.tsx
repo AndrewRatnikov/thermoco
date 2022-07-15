@@ -6,15 +6,11 @@ import DeleteSensor from "../components/DeleteSensor"
 import { AuthContext } from "../Contexts/AuthContext"
 
 import './sensors.css'
+import CreateSensor from "../components/CreateSensor"
 
 const Sensors = () => {
     const { token } = useContext(AuthContext)
-    const [sensors, setSensors] = useState<{
-        description: string,
-        isActive: boolean,
-        samplingPeriod: number,
-        id: number
-    }[]>([])
+    const [sensors, setSensors] = useState<Sensor[]>([])
 
     const handleDeleteSensor = (id: number) => () => {
         try {
@@ -28,6 +24,12 @@ const Sensors = () => {
         }
     }
 
+    const addSensor = (sensor: Sensor) => {
+        const newSensors = [...sensors, sensor]
+
+        setSensors(newSensors)
+    }
+
     useEffect(() => {
         getSensors(token).then((res) => {
             setSensors(res)
@@ -36,8 +38,9 @@ const Sensors = () => {
     }, [])
 
     return (<div>
+        <h1 className="sensors-title">Sensors</h1>
+        <CreateSensor addSensor={addSensor} />
         <table className="sensors-table">
-            <caption>Sensors</caption>
             <thead>
                 <tr>
                     <th>Description</th>
@@ -58,6 +61,13 @@ const Sensors = () => {
             </tbody>
         </table>
     </div>)
+}
+
+export interface Sensor {
+    description: string,
+    isActive: boolean,
+    samplingPeriod: number,
+    id: number
 }
 
 export default Sensors
