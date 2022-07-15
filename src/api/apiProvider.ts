@@ -28,6 +28,19 @@ const apiProvider = {
         const response = rawResponse.json();
 
         return response;
+    },
+
+    delete: async (url: string, token: string) => { // TODO: del any
+        const rawResponse = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        const response = rawResponse.json();
+
+        return response;
     }
 }
 

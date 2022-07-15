@@ -1,11 +1,30 @@
 import { useContext, useEffect, useState } from "react"
 
 import getSensors from "../api/getSensors"
+import deleteSensor from "../api/deleteSensor"
+import DeleteSensor from "../components/DeleteSensor"
 import { AuthContext } from "../Contexts/AuthContext"
 
 const Sensors = () => {
     const { token } = useContext(AuthContext)
-    const [sensors, setSensors] = useState<{ description: string, isActive: boolean, samplingPeriod: number }[]>([])
+    const [sensors, setSensors] = useState<{
+        description: string,
+        isActive: boolean,
+        samplingPeriod: number,
+        id: number
+    }[]>([])
+
+    const handleDeleteSensor = (id: number) => () => {
+        try {
+            deleteSensor(id, token)
+
+            const newSensors = sensors.filter(sensor => sensor.id !== id)
+
+            setSensors(newSensors)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     useEffect(() => {
         getSensors(token).then((res) => {
@@ -30,7 +49,9 @@ const Sensors = () => {
                     <td>{sensor.description}</td>
                     <td>{sensor.samplingPeriod}</td>
                     <td>{sensor.isActive}</td>
-                    <td>Actions</td>
+                    <td>
+                        <DeleteSensor handler={handleDeleteSensor(sensor.id)} />
+                    </td>
                 </tr>))}
             </tbody>
         </table>
