@@ -1,0 +1,24 @@
+.sensors-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    border: 2px solid black;
+}
+
+.sensors-table thead {
+    background-color: antiquewhite;
+    border: 2px solid black;
+}
+
+.sensors-table th,
+.sensors-table td {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.sensors-table caption {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

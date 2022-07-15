@@ -5,6 +5,8 @@ import deleteSensor from "../api/deleteSensor"
 import DeleteSensor from "../components/DeleteSensor"
 import { AuthContext } from "../Contexts/AuthContext"
 
+import './sensors.css'
+
 const Sensors = () => {
     const { token } = useContext(AuthContext)
     const [sensors, setSensors] = useState<{
@@ -34,7 +36,7 @@ const Sensors = () => {
     }, [])
 
     return (<div>
-        <table>
+        <table className="sensors-table">
             <caption>Sensors</caption>
             <thead>
                 <tr>
@@ -48,7 +50,7 @@ const Sensors = () => {
                 {sensors.map(sensor => (<tr>
                     <td>{sensor.description}</td>
                     <td>{sensor.samplingPeriod}</td>
-                    <td>{sensor.isActive}</td>
+                    <td>{sensor.isActive ? 'true' : 'false'}</td>
                     <td>
                         <DeleteSensor handler={handleDeleteSensor(sensor.id)} />
                     </td>
