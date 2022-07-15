@@ -1,0 +1,34 @@
+.login-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login>h1,
+.login>h2 {
+    text-align: center;
+}
+
+.login>form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-field {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.login-field>input {
+    width: 200px;
+}
+
+.login-submit {
+    font-size: 1.2em;
+    margin-top: 20px;
+    cursor: pointer;
+}

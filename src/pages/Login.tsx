@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 
 import login from "../api/login"
 import { AuthContext } from "../Contexts/AuthContext"
-
+import './login.css'
 
 const Login = () => {
     const navigate = useNavigate();
@@ -33,15 +33,22 @@ const Login = () => {
         }
     }
 
-    return <div>
-        <h1>Login</h1>
-        <form onSubmit={onSubmit}>
-            <label htmlFor='name'>Name:</label>
-            <input id='name' type='text' name='name' value={username} onChange={handleChangeName} />
-            <label htmlFor='password'>Password:</label>
-            <input id='password' type='password' name='password' value={password} onChange={handleChangePassword} />
-            <input type='submit' value='Login' />
-        </form>
+    return <div className="login-wrap">
+        <div className="login">
+            <h2>ThermoCo sensor admin app</h2>
+            <h1>Login:</h1>
+            <form onSubmit={onSubmit}>
+                <div className="login-field">
+                    <label htmlFor='name'>Name:</label>
+                    <input id='name' type='text' name='name' value={username} onChange={handleChangeName} />
+                </div>
+                <div className="login-field">
+                    <label htmlFor='password'>Password:</label>
+                    <input id='password' type='password' name='password' value={password} onChange={handleChangePassword} />
+                </div>
+                <button type='submit' className="login-submit">Submit</button>
+            </form>
+        </div>
     </div>
 }
 
